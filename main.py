@@ -38,13 +38,13 @@ y_train = tf.one_hot(tf.cast(y_train, dtype=tf.int32), 10)
 y_test = tf.one_hot(tf.cast(y_test, dtype=tf.int32), 10)
 
 model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Dense(100, activation="relu", input_shape=(32*32*3,), bias_initializer = "zeros"))
-#model.add(tf.keras.layers.Dense(50, activation="relu"))
-#model.add(tf.keras.layers.Dense(50, activation="relu"))
+model.add(tf.keras.layers.Dense(256, activation="relu", input_shape=(32*32*3,), bias_initializer = "zeros"))
+model.add(tf.keras.layers.Dense(128, activation="relu"))
+model.add(tf.keras.layers.Dense(64, activation="relu"))
 #model.add(tf.keras.layers.Dense(25, activation="relu"))
 model.add(tf.keras.layers.Dense(10, activation="softmax"))
 
-adam = tf.keras.optimizers.SGD(learning_rate=0.001)
+adam = tf.keras.optimizers.SGD(learning_rate=0.002, momentum=0.5)
 
 model.compile(loss="categorical_crossentropy", optimizer=adam, metrics="accuracy")
 
